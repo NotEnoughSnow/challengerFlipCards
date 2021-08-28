@@ -1,0 +1,78 @@
+$carddim : 450px;
+
+$backwidth : 500px;
+
+$boxheight : 300px;
+$boxwidth : 700px;
+
+$borders : 40px;
+
+.card {
+ margin : 10%;
+ //object-fit: cover;
+ transition: transform 0.6s;
+ background-color: coral;
+
+
+	width: $carddim;
+ 	height: $carddim;
+
+transform-style: preserve-3d;
+
+  &:hover{
+    transform:perspective(1500px) rotateY(180deg);
+  }
+  float:left;
+}
+
+.wrapper {
+  overflow: hidden;
+}
+
+.background{
+	width: $carddim;
+	height: $carddim;
+  position:absolute;
+        bottom:0px;
+        left:0px;
+}
+.border{
+	width: $carddim;
+	height: $carddim;
+	position:absolute;
+        top:0px;
+        left:0px;
+
+}
+.portrait{
+	width: $carddim;
+	height: $carddim;
+  position:absolute;
+        bottom:0px;
+        left:0px;
+}
+
+.front{
+}
+.back{
+  background-color: blue;
+  width: $backwidth;
+  height: $carddim;
+  position:relative;
+        bottom:0px;
+        right: calc(($backwidth-$carddim)/2);
+
+  backface-visibility: hidden;
+  transform: rotateY(-180deg);
+  border-radius: $borders;
+}
+
+.box{
+    width: 800px;
+    height: 500px;
+    background-color: red;
+    border-radius: $borders;
+
+    float:left;
+    margin-top: 10%;
+}
