@@ -1,32 +1,92 @@
-$carddim : 450px;
+$carddim : 250px;
 
-$backwidth : 500px;
+$backwidth : 300px;
 
-$boxheight : 300px;
-$boxwidth : 700px;
+$boxheight : 200px;
+$boxwidth : 400px;
 
-$borders : 40px;
+$borders : 20px;
+
+.effect{
+  width : 100%;
+  height: 100%;
+  background-color: green;
+  overflow: hidden;
+  position:absolute;
+  left:0px;
+  top:0px;
+  opacity : 0;
+
+  animation-name: colorchange;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  opacity : 0.1;
+  transition: opacity 0.5s linear;
+}
+
+@keyframes colorchange {
+  0%   {background-color:red;}
+  25%  {background-color:yellow;}
+  50%  {background-color:blue;}
+  75%  {background-color:green;}
+  100% {background-color:red;}
+}
+
+.wrapper {
+  display: grid;
+  /*overflow: hidden;*/
+  grid-template-columns: 1fr 1fr;
+
+  row-gap: 5%;
+  column-gap: 0px;
+
+  margin-left: 20%;
+  margin-top: 2%;
+  position:absolute;
+
+}
 
 .card {
- margin : 10%;
+  grid-column: 1;
  //object-fit: cover;
  transition: transform 0.6s;
  background-color: coral;
-
+justify-self: center;
 
 	width: $carddim;
  	height: $carddim;
-
 transform-style: preserve-3d;
 
   &:hover{
     transform:perspective(1500px) rotateY(180deg);
   }
-  float:left;
+  /*float:left;*/
+
+  &:hover + .box{
+    opacity: 1;
+    visibility: visible;
+  }
+
+
+
 }
 
-.wrapper {
-  overflow: hidden;
+.box{
+    grid-column: 2;
+    justify-self: start;
+
+    width: $boxwidth;
+    height: $boxheight;
+    background-color: red;
+    border-radius: $borders;
+    transition: visibility 0.2s, opacity 0.5s linear;
+    visibility: hidden;
+    /*float:left;*/
+
+}
+
+.card:not(:hover) +.box{
+  opacity: 0;
 }
 
 .background{
@@ -35,6 +95,7 @@ transform-style: preserve-3d;
   position:absolute;
         bottom:0px;
         left:0px;
+
 }
 .border{
 	width: $carddim;
@@ -43,6 +104,8 @@ transform-style: preserve-3d;
         top:0px;
         left:0px;
 
+
+
 }
 .portrait{
 	width: $carddim;
@@ -50,29 +113,54 @@ transform-style: preserve-3d;
   position:absolute;
         bottom:0px;
         left:0px;
+
+
 }
 
+.glass{
+  width: $carddim;
+	height: $carddim;
+  position:absolute;
+        bottom:0px;
+        left:0px;
+
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform: rotate(45deg);
+    backface-visibility: hidden;
+    background: linear-gradient(
+      40deg,
+      rgba(67, 138, 243, 0.7),
+      rgba(255, 242, 166, 0.7)
+    );
+  }
+
+  overflow: hidden;
+
+}
 .front{
+  /*display:none;*/
 }
 .back{
+
   background-color: blue;
   width: $backwidth;
   height: $carddim;
   position:relative;
         bottom:0px;
-        right: calc(($backwidth-$carddim)/2);
+        /*right: calc(#{(#{$backwidth}-#{$carddim})}/2);*/
+        /*had to brute force it*/
+        right :25px;
 
   backface-visibility: hidden;
   transform: rotateY(-180deg);
-  border-radius: $borders;
-}
+  border-radius: calc(#{$borders}*2);
 
-.box{
-    width: 800px;
-    height: 500px;
-    background-color: red;
-    border-radius: $borders;
-
-    float:left;
-    margin-top: 10%;
 }
