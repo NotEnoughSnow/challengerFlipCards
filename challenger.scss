@@ -1,35 +1,80 @@
-$carddim : 250px;
+$carddim : 400px;
 
-$backwidth : 300px;
+$backwidth : 500px;
 
-$boxheight : 200px;
-$boxwidth : 400px;
+$boxheight : 400px;
+$boxwidth : 700px;
 
-$borders : 20px;
+$borders : 50px;
+
+$boxcolor : #023047;
+$boxbordercolor : #457b9d;
+
+
+@font-face {
+  font-family: 'Roman';
+  src: url('Roman SD.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'Aksi';
+  src: url('aAksiMosi.otf')  format('opentype');
+}
+
+@font-face {
+  font-family: 'mermaid';
+  src: url('Mermaid1001.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'rose';
+  src: url('Rose Velt Personal Use Only.ttf')  format('truetype');
+}
+
+html {
+
+  min-height:100%;
+  min-width:100%;
+
+background-color: #1d3557;
+}
+body {
+  height: 100%;
+  width:  100%;
+
+}
 
 .effect{
-  width : 100%;
-  height: 100%;
+  height: inherit;
+  width: inherit;
+
   background-color: green;
   overflow: hidden;
   position:absolute;
-  left:0px;
-  top:0px;
-  opacity : 0;
+  display:block;
+  top:200%;
+      left:0;
+      right:0;
+   z-index:-1;
 
-  animation-name: colorchange;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
   opacity : 0.1;
-  transition: opacity 0.5s linear;
+  animation-name: colorchange;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
 }
 
 @keyframes colorchange {
-  0%   {background-color:red;}
-  25%  {background-color:yellow;}
-  50%  {background-color:blue;}
-  75%  {background-color:green;}
-  100% {background-color:red;}
+  0%   {background-color:#f72585;}
+  10%  {background-color:#b5179e;}
+  20%  {background-color:#7209b7;}
+  30%  {background-color:#7209b7;}
+  40%  {background-color:#560bad;}
+  50%  {background-color:#480ca8;}
+  60%  {background-color:#3a0ca3;}
+  70%  {background-color:#3f37c9;}
+  80%  {background-color:#4361ee;}
+  90%  {background-color:#4895ef;}
+  100%  {background-color:#f72585;}
 }
 
 .wrapper {
@@ -37,11 +82,11 @@ $borders : 20px;
   /*overflow: hidden;*/
   grid-template-columns: 1fr 1fr;
 
-  row-gap: 5%;
-  column-gap: 0px;
+  row-gap: 40%;
+  column-gap: 10%;
 
   margin-left: 20%;
-  margin-top: 2%;
+  margin-top: 10%;
   position:absolute;
 
 }
@@ -50,7 +95,6 @@ $borders : 20px;
   grid-column: 1;
  //object-fit: cover;
  transition: transform 0.6s;
- background-color: coral;
 justify-self: center;
 
 	width: $carddim;
@@ -67,100 +111,217 @@ transform-style: preserve-3d;
     visibility: visible;
   }
 
+  .cardextra{
+    width: calc(#{$carddim}*2);
+    height: calc(#{$carddim}*2);
 
+  position: absolute;
+  left:-50%;
+  top:-50%;
+  }
+  .background{
+  	width: $carddim;
+  	height: $carddim;
+    position:absolute;
+          bottom:0px;
+          left:0px;
+
+  }
+  .border{
+  	width: $carddim;
+  	height: $carddim;
+  	position:absolute;
+          top:0px;
+          left:0px;
+
+
+
+  }
+  .portrait{
+  	width: $carddim;
+  	height: $carddim;
+    position:absolute;
+          bottom:0px;
+          left:0px;
+
+
+  }
+
+  .glass{
+    width: calc(#{$carddim}*0.9);
+  	height: calc(#{$carddim}*0.9);
+    position:absolute;
+          bottom:calc(#{$carddim}*0.05);
+          left:calc(#{$carddim}*0.05);
+
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0.5;
+      transform: rotate(45deg);
+      backface-visibility: hidden;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0),
+        rgba(255, 255, 255, 1)
+      );
+    }
+
+    overflow: hidden;
+
+  }
 
 }
 
 .box{
     grid-column: 2;
+
     justify-self: start;
 
     width: $boxwidth;
     height: $boxheight;
-    background-color: red;
+    background-color: $boxcolor;
     border-radius: $borders;
     transition: visibility 0.2s, opacity 0.5s linear;
     visibility: hidden;
     /*float:left;*/
 
+    margin : 5%;
+
+   border:3px solid $boxbordercolor;
+
+   &:after {
+     content: '';
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: block;
+     opacity: 0.1;
+
+
+     backface-visibility: hidden;
+     background: linear-gradient(
+       0deg,
+       rgba(72, 12, 168, 1),
+       rgba(255, 255, 255, 0)
+     );
+   }
+   overflow: hidden;
 }
+
+.story{
+  margin :7%;
+  font-size: 22px;
+  font-family: 'mermaid', Fallback, serif;
+  color:white;
+  float: left;
+}
+
 
 .card:not(:hover) +.box{
   opacity: 0;
 }
 
-.background{
-	width: $carddim;
-	height: $carddim;
-  position:absolute;
-        bottom:0px;
-        left:0px;
 
-}
-.border{
-	width: $carddim;
-	height: $carddim;
-	position:absolute;
-        top:0px;
-        left:0px;
-
-
-
-}
-.portrait{
-	width: $carddim;
-	height: $carddim;
-  position:absolute;
-        bottom:0px;
-        left:0px;
-
-
-}
-
-.glass{
-  width: $carddim;
-	height: $carddim;
-  position:absolute;
-        bottom:0px;
-        left:0px;
-
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    transform: rotate(45deg);
-    backface-visibility: hidden;
-    background: linear-gradient(
-      40deg,
-      rgba(67, 138, 243, 0.7),
-      rgba(255, 242, 166, 0.7)
-    );
-  }
-
-  overflow: hidden;
-
-}
 .front{
   /*display:none;*/
 }
 .back{
 
-  background-color: blue;
+  background-color: $boxcolor;
+
+  border:3px solid $boxbordercolor;
+
   width: $backwidth;
   height: $carddim;
   position:relative;
         bottom:0px;
-        /*right: calc(#{(#{$backwidth}-#{$carddim})}/2);*/
-        /*had to brute force it*/
-        right :25px;
+        right: calc((#{$backwidth} - #{$carddim}) / 2);
 
   backface-visibility: hidden;
   transform: rotateY(-180deg);
   border-radius: calc(#{$borders}*2);
 
+  &:after {
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0.1;
+
+
+    backface-visibility: hidden;
+    background: linear-gradient(
+      0deg,
+      rgba(72, 12, 168, 1),
+      rgba(255, 255, 255, 0)
+    );
+  }
+  overflow: hidden;
+}
+
+
+.content{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+
+        display: grid;
+        grid-template-rows: 1fr 1fr 3fr 1fr;
+
+        color : white;
+
+
+}
+
+.skills {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+
+.skillimg{
+  width: 100px;
+  height: 100px;
+
+
+}
+
+.skilltext{
+  text-align: center;
+color : inherit;
+font-family: "roman";
+font-size: 15px;
+}
+
+.name {
+  text-align: center;
+  color: inherit;
+
+  font-family: "aksi";
+  font-weight: bold;
+  font-size: 55px;
+}
+.title {
+  text-align: center;
+  color: inherit;
+  font-family: "aksi";
+  font-size: 30px;
+}
+.school {
+  text-align: center;
+  color: inherit;
+
+  font-family: "roman";
+  font-size: 20px;
 }

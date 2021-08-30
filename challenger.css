@@ -1,54 +1,99 @@
-.effect {
-  width: 100%;
+@font-face {
+  font-family: "Roman";
+  src: url("Roman SD.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Aksi";
+  src: url("aAksiMosi.otf") format("opentype");
+}
+@font-face {
+  font-family: "mermaid";
+  src: url("Mermaid1001.ttf") format("truetype");
+}
+@font-face {
+  font-family: "rose";
+  src: url("Rose Velt Personal Use Only.ttf") format("truetype");
+}
+html {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #1d3557;
+}
+
+body {
   height: 100%;
+  width: 100%;
+}
+
+.effect {
+  height: inherit;
+  width: inherit;
   background-color: green;
   overflow: hidden;
   position: absolute;
-  left: 0px;
-  top: 0px;
-  opacity: 0;
-  animation-name: colorchange;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
+  display: block;
+  top: 200%;
+  left: 0;
+  right: 0;
+  z-index: -1;
   opacity: 0.1;
-  transition: opacity 0.5s linear;
+  animation-name: colorchange;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
 }
 
 @keyframes colorchange {
   0% {
-    background-color: red;
+    background-color: #f72585;
   }
-  25% {
-    background-color: yellow;
+  10% {
+    background-color: #b5179e;
+  }
+  20% {
+    background-color: #7209b7;
+  }
+  30% {
+    background-color: #7209b7;
+  }
+  40% {
+    background-color: #560bad;
   }
   50% {
-    background-color: blue;
+    background-color: #480ca8;
   }
-  75% {
-    background-color: green;
+  60% {
+    background-color: #3a0ca3;
+  }
+  70% {
+    background-color: #3f37c9;
+  }
+  80% {
+    background-color: #4361ee;
+  }
+  90% {
+    background-color: #4895ef;
   }
   100% {
-    background-color: red;
+    background-color: #f72585;
   }
 }
 .wrapper {
   display: grid;
   /*overflow: hidden;*/
   grid-template-columns: 1fr 1fr;
-  row-gap: 5%;
-  column-gap: 0px;
+  row-gap: 40%;
+  column-gap: 10%;
   margin-left: 20%;
-  margin-top: 2%;
+  margin-top: 10%;
   position: absolute;
 }
 
 .card {
   grid-column: 1;
   transition: transform 0.6s;
-  background-color: coral;
   justify-self: center;
-  width: 250px;
-  height: 250px;
+  width: 400px;
+  height: 400px;
   transform-style: preserve-3d;
   /*float:left;*/
 }
@@ -59,56 +104,43 @@
   opacity: 1;
   visibility: visible;
 }
-
-.box {
-  grid-column: 2;
-  justify-self: start;
+.card .cardextra {
+  width: calc(400px*2);
+  height: calc(400px*2);
+  position: absolute;
+  left: -50%;
+  top: -50%;
+}
+.card .background {
   width: 400px;
-  height: 200px;
-  background-color: red;
-  border-radius: 20px;
-  transition: visibility 0.2s, opacity 0.5s linear;
-  visibility: hidden;
-  /*float:left;*/
-}
-
-.card:not(:hover) + .box {
-  opacity: 0;
-}
-
-.background {
-  width: 250px;
-  height: 250px;
+  height: 400px;
   position: absolute;
   bottom: 0px;
   left: 0px;
 }
-
-.border {
-  width: 250px;
-  height: 250px;
+.card .border {
+  width: 400px;
+  height: 400px;
   position: absolute;
   top: 0px;
   left: 0px;
 }
-
-.portrait {
-  width: 250px;
-  height: 250px;
+.card .portrait {
+  width: 400px;
+  height: 400px;
   position: absolute;
   bottom: 0px;
   left: 0px;
 }
-
-.glass {
-  width: 250px;
-  height: 250px;
+.card .glass {
+  width: calc(400px*0.9);
+  height: calc(400px*0.9);
   position: absolute;
-  bottom: 0px;
-  left: 0px;
+  bottom: calc(400px*0.05);
+  left: calc(400px*0.05);
   overflow: hidden;
 }
-.glass:after {
+.card .glass:after {
   content: "";
   position: absolute;
   top: 0;
@@ -116,9 +148,48 @@
   width: 100%;
   height: 100%;
   display: block;
+  opacity: 0.5;
   transform: rotate(45deg);
   backface-visibility: hidden;
-  background: linear-gradient(40deg, rgba(67, 138, 243, 0.7), rgba(255, 242, 166, 0.7));
+  background: linear-gradient(90deg, rgba(255, 0, 0, 0), white);
+}
+
+.box {
+  grid-column: 2;
+  justify-self: start;
+  width: 700px;
+  height: 400px;
+  background-color: #023047;
+  border-radius: 50px;
+  transition: visibility 0.2s, opacity 0.5s linear;
+  visibility: hidden;
+  /*float:left;*/
+  margin: 5%;
+  border: 3px solid #457b9d;
+  overflow: hidden;
+}
+.box:after {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.1;
+  backface-visibility: hidden;
+  background: linear-gradient(0deg, #480ca8, rgba(255, 255, 255, 0));
+}
+
+.story {
+  margin: 7%;
+  font-size: 22px;
+  font-family: "mermaid", Fallback, serif;
+  color: white;
+  float: left;
+}
+
+.card:not(:hover) + .box {
+  opacity: 0;
 }
 
 .front {
@@ -126,17 +197,77 @@
 }
 
 .back {
-  background-color: blue;
-  width: 300px;
-  height: 250px;
+  background-color: #023047;
+  border: 3px solid #457b9d;
+  width: 500px;
+  height: 400px;
   position: relative;
   bottom: 0px;
-  /*right: calc(300px-250px/2);*/
-  /*had to brute force it*/
-  right: 25px;
+  right: calc((500px - 400px) / 2);
   backface-visibility: hidden;
   transform: rotateY(-180deg);
-  border-radius: calc(20px*2);
+  border-radius: calc(50px*2);
+  overflow: hidden;
+}
+.back:after {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.1;
+  backface-visibility: hidden;
+  background: linear-gradient(0deg, #480ca8, rgba(255, 255, 255, 0));
+}
+
+.content {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  display: grid;
+  grid-template-rows: 1fr 1fr 3fr 1fr;
+  color: white;
+}
+
+.skills {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.skillimg {
+  width: 100px;
+  height: 100px;
+}
+
+.skilltext {
+  text-align: center;
+  color: inherit;
+  font-family: "roman";
+  font-size: 15px;
+}
+
+.name {
+  text-align: center;
+  color: inherit;
+  font-family: "aksi";
+  font-weight: bold;
+  font-size: 55px;
+}
+
+.title {
+  text-align: center;
+  color: inherit;
+  font-family: "aksi";
+  font-size: 30px;
+}
+
+.school {
+  text-align: center;
+  color: inherit;
+  font-family: "roman";
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=challenger.css.map */
